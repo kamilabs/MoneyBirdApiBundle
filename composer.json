@@ -1,5 +1,5 @@
 {
-    "name":        "kamilabs/moneybird-api-bundle",
+    "name":        "kami/moneybird-api-bundle",
     "type":        "symfony-bundle",
     "description": "A Symfony2 bundle for working with Moneybird v2",
     "keywords":    ["moneybird", "symfony2"],
@@ -23,11 +23,15 @@
         "picqer/moneybird-php-client": "~0.9"
     },
 
+    "require-dev": {
+        "phpunit/phpunit": "~5.0"
+    },
+
     "autoload": {
         "psr-0": {
-           "Kamilabs\\MoneyBirdApiBundle": ""
+           "Kami\\MoneyBirdApiBundle": ""
         }
     },
 
-    "target-dir": "Kamilabs/MoneyBirdApiBundle"
+    "target-dir": "Kami/MoneyBirdApiBundle"
 }

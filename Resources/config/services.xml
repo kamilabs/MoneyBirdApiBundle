@@ -1,0 +1,47 @@
+<?xml version="1.0" ?>
+
+<container xmlns="http://symfony.com/schema/dic/services"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <parameters>
+        <parameter key="kami_moneybird.redirect_url"/>
+        <parameter key="kami_moneybird.client_id"/>
+        <parameter key="kami_moneybird.client_secret"/>
+
+        <parameter key="kami_moneybird.testmode"/>
+        <parameter key="kami_moneybird.access_token"/>
+        <parameter key="kami_moneybird.authorization_code"/>
+
+        <parameter key="kami_moneybird.connection.class">Picqer\Financials\Moneybird\Connection</parameter>
+        <parameter key="kami_moneybird.moneybird.class">Picqer\Financials\Moneybird\Moneybird</parameter>
+    </parameters>
+
+    <services>
+        <service id="kami_moneybird.connection" class="%kami_moneybird.connection.class%" public="false">
+                <!--<argument on-invalid="ignore"/>-->
+            <call method="setClientId">
+                <argument>%kami_moneybird.client_id%</argument>
+            </call>
+            <call method="setClientSecret">
+                <argument>%kami_moneybird.client_secret%</argument>
+            </call>
+            <call method="setRedirectUrl">
+                <argument>%kami_moneybird.redirect_url%</argument>
+            </call>
+            <call method="setTesting">
+                <argument>%kami_moneybird.testmode%</argument>
+            </call>
+            <call method="setAccessToken">
+                <argument>%kami_moneybird.access_token%</argument>
+            </call>
+            <call method="setAuthorizationCode">
+                <argument>%kami_moneybird.authorization_code%</argument>
+            </call>
+        </service>
+
+        <service id="moneybird.api" alias="kami_moneybird.moneybird" class="%kami_moneybird.moneybird.class%">
+            <argument type="service" id="kami_moneybird.connection" />
+        </service>
+    </services>
+</container>

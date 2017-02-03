@@ -12,18 +12,18 @@
 
 namespace Kami\MoneyBirdApiBundle\Tests\DependencyInjection;
 
-use Symfony\Component\DependencyInjection\ContainerBuilder;
-use Symfony\Component\Config\FileLocator;
-use Symfony\Component\HttpKernel\DependencyInjection\Extension;
-use Symfony\Component\DependencyInjection\Loader\XmlFileLoader;
 use Kami\MoneyBirdApiBundle\Tests\DependencyInjection\AbstractExtensionTest;
+use Symfony\Component\Config\FileLocator;
+use Symfony\Component\DependencyInjection\ContainerBuilder;
+use Symfony\Component\DependencyInjection\Loader\YamlFileLoader;
+use Symfony\Component\HttpKernel\DependencyInjection\Extension;
 
 
-class XmlKamiMoneyBirdApiExtensionTest extends AbstractExtensionTest
+class YamlKamiMoneyBirdApiExtensionTest extends AbstractExtensionTest
 {
     protected function loadConfiguration(ContainerBuilder $container, $resource)
     {
-        $loader = new XmlFileLoader($container, new FileLocator(__DIR__.'/Fixtures/Xml/'));
-        $loader->load($resource.'.xml');
+        $loader = new YamlFileLoader($container, new FileLocator(__DIR__.'/Fixtures/Yaml/'));
+        $loader->load($resource.'.yml');
     }
 }

@@ -37,14 +37,16 @@ class KamiMoneyBirdApiExtension extends Extension
         if (isset($config['client_secret'])) {
             $container->setParameter('kami_moneybird.client_secret', $config['client_secret']);
         }
-        if (isset($config['testmode'])) {
-            $container->setParameter('kami_moneybird.testmode', $config['testmode']);
+        if (isset($config['debug'])) {
+            $container->setParameter('kami_moneybird.debug', $config['debug']);
         }
-        if (isset($config['access_token'])) {
-            $container->setParameter('kami_moneybird.access_token', $config['access_token']);
-        }
-        if (isset($config['authorization_code'])) {
-            $container->setParameter('kami_moneybird.authorization_code', $config['authorization_code']);
-        }
+    }
+
+    /**
+     * @return string
+     */
+    public function getAlias()
+    {
+        return 'kami_moneybird';
     }
 }

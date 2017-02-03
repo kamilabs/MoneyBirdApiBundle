@@ -13,7 +13,9 @@
 namespace Kami\MoneyBirdApiBundle\Tests\DependencyInjection;
 
 use Kami\MoneyBirdApiBundle\DependencyInjection\KamiMoneyBirdApiExtension;
+use Picqer\Financials\Moneybird\Connection;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
+use GuzzleHttp\Middleware;
 
 
 abstract class AbstractExtensionTest extends \PHPUnit_Framework_TestCase
@@ -27,25 +29,50 @@ abstract class AbstractExtensionTest extends \PHPUnit_Framework_TestCase
 
         $this->container = new ContainerBuilder();
         $this->container->registerExtension($this->extension);
+
     }
 
     abstract protected function loadConfiguration(ContainerBuilder $container, $resource);
 
-    public function testWithoutConfiguration()
+    public function testNormalConfiguration()
     {
-        // An extension is only loaded in the container if a configuration is provided for it.
-        // Then, we need to explicitely load it.
-        $this->container->loadFromExtension($this->extension->getAlias());
+        $this->loadConfiguration($this->container, 'normal');
         $this->container->compile();
 
-        $this->assertFalse($this->container->has('moneybird.api'));
+        $this->assertTrue($this->container->has('kami_moneybird'));
+
+        $moneybird = $this->container->get('kami_moneybird');
+        $connection = $moneybird->getConnection();
+
+        $this->assertInstanceOf(Connection::class, $connection);
+
+        $this->assertTrue($this->container->getParameter('kami_moneybird.debug'));
+        $this->assertTrue($connection->isTesting());
+
+        $this->assertEquals('localhost', $this->container->getParameter('kami_moneybird.redirect_url'));
+        $this->assertEquals('localhost', $this->getPrivatePropertyOfInstance($connection, 'redirectUrl'));
+
+        $this->assertEquals('test_client_id', $this->container->getParameter('kami_moneybird.client_id'));
+        $this->assertEquals('test_client_id', $this->getPrivatePropertyOfInstance($connection, 'clientId'));
+
+        $this->assertEquals('test_client_secret', $this->container->getParameter('kami_moneybird.client_secret'));
+        $this->assertEquals('test_client_secret', $this->getPrivatePropertyOfInstance($connection, 'clientSecret'));
     }
 
-    public function testEnabledConfiguration()
+    /**
+     * Return value of a private property using ReflectionClass
+     *
+     * @param mixed $instance
+     * @param string $property
+     *
+     * @return mixed
+     */
+    private function getPrivatePropertyOfInstance($instance, $property)
     {
-        $this->loadConfiguration($this->container, 'enabled');
-        $this->container->compile();
+        $reflector = new \ReflectionClass($instance);
+        $reflectorProperty = $reflector->getProperty($property);
+        $reflectorProperty->setAccessible(true);
 
-        $this->assertTrue($this->container->has('moneybird.api'));
+        return $reflectorProperty->getValue($instance);
     }
 }

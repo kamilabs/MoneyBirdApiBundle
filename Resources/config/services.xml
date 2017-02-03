@@ -8,10 +8,7 @@
         <parameter key="kami_moneybird.redirect_url"/>
         <parameter key="kami_moneybird.client_id"/>
         <parameter key="kami_moneybird.client_secret"/>
-
-        <parameter key="kami_moneybird.testmode"/>
-        <parameter key="kami_moneybird.access_token"/>
-        <parameter key="kami_moneybird.authorization_code"/>
+        <parameter key="kami_moneybird.debug"/>
 
         <parameter key="kami_moneybird.connection.class">Picqer\Financials\Moneybird\Connection</parameter>
         <parameter key="kami_moneybird.moneybird.class">Picqer\Financials\Moneybird\Moneybird</parameter>
@@ -19,7 +16,6 @@
 
     <services>
         <service id="kami_moneybird.connection" class="%kami_moneybird.connection.class%" public="false">
-                <!--<argument on-invalid="ignore"/>-->
             <call method="setClientId">
                 <argument>%kami_moneybird.client_id%</argument>
             </call>
@@ -30,17 +26,11 @@
                 <argument>%kami_moneybird.redirect_url%</argument>
             </call>
             <call method="setTesting">
-                <argument>%kami_moneybird.testmode%</argument>
-            </call>
-            <call method="setAccessToken">
-                <argument>%kami_moneybird.access_token%</argument>
-            </call>
-            <call method="setAuthorizationCode">
-                <argument>%kami_moneybird.authorization_code%</argument>
+                <argument>%kami_moneybird.debug%</argument>
             </call>
         </service>
 
-        <service id="moneybird.api" alias="kami_moneybird.moneybird" class="%kami_moneybird.moneybird.class%">
+        <service id="kami_moneybird" class="%kami_moneybird.moneybird.class%">
             <argument type="service" id="kami_moneybird.connection" />
         </service>
     </services>

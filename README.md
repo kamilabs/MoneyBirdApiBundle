@@ -42,7 +42,7 @@ kami_moneybird:
     redirect_url: localhost
     client_id: test_client_id
     client_secret: test_client_secret
-    debug: false # optional value for activation test mode
+    debug: false # optional parameter for test mode activation
 ```
 
 Only first three configuration values are required to use the bundle.

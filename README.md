@@ -3,6 +3,8 @@ MoneyBirdApiBundle
 
 MoneyBird Bundle for Symfony 2 Applications. Bundle provides wrapper for [moneybird-php-client](https://github.com/picqer/moneybird-php-client)
 
+[![Build Status](https://travis-ci.org/kamilabs/MoneyBirdApiBundle.svg?branch=master)](https://travis-ci.org/kamilabs/MoneyBirdApiBundle)
+[![SensioLabsInsight](https://insight.sensiolabs.com/projects/0e27331a-b32c-4e26-a35f-ea651e428980/mini.png)](https://insight.sensiolabs.com/projects/0e27331a-b32c-4e26-a35f-ea651e428980)
 
 Installation
 -------------

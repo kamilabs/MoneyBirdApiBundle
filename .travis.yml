@@ -21,3 +21,4 @@ script: vendor/bin/phpunit
 
 notifications:
   email: iakov@kamilabs.com
+

@@ -54,3 +54,4 @@ Core component of this bundle is MoneyBird service.
 <?php
     $this->get('kami_moneybird'); /** @var \Picqer\Financials\Moneybird\Moneybird */
 ```
+

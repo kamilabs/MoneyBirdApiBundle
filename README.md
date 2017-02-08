@@ -29,7 +29,7 @@ public function registerBundles()
     $bundles = array(
         // ...
 
-        new Kami\MoneyBirdApiBundle\KamiMoneyBirdBundle(),
+        new Kami\MoneyBirdApiBundle\KamiMoneyBirdApiBundle(),
     );
 }
 ```

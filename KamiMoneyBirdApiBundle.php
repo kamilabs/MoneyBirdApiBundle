@@ -13,8 +13,16 @@
 namespace Kami\MoneyBirdApiBundle;
 
 use Symfony\Component\HttpKernel\Bundle\Bundle;
+use Kami\MoneyBirdApiBundle\DependencyInjection\KamiMoneyBirdApiExtension;
 
 
-class KamiMoneyBirdBundle extends Bundle
+class KamiMoneyBirdApiBundle extends Bundle
 {
+    public function getContainerExtension()
+    {
+        if (null === $this->extension) {
+            $this->extension = new KamiMoneyBirdApiExtension();
+        }
+        return $this->extension;
+    }
 }

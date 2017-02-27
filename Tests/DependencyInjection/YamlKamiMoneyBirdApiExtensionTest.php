@@ -9,15 +9,11 @@
  * file that was distributed with this source code.
  */
 
-
 namespace Kami\MoneyBirdApiBundle\Tests\DependencyInjection;
 
-use Kami\MoneyBirdApiBundle\Tests\DependencyInjection\AbstractExtensionTest;
 use Symfony\Component\Config\FileLocator;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Loader\YamlFileLoader;
-use Symfony\Component\HttpKernel\DependencyInjection\Extension;
-
 
 class YamlKamiMoneyBirdApiExtensionTest extends AbstractExtensionTest
 {

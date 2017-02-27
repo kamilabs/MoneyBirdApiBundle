@@ -9,14 +9,11 @@
  * file that was distributed with this source code.
  */
 
-
 namespace Kami\MoneyBirdApiBundle\Tests\DependencyInjection;
 
 use Kami\MoneyBirdApiBundle\DependencyInjection\KamiMoneyBirdApiExtension;
 use Picqer\Financials\Moneybird\Connection;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
-use GuzzleHttp\Middleware;
-
 
 abstract class AbstractExtensionTest extends \PHPUnit_Framework_TestCase
 {
@@ -29,7 +26,6 @@ abstract class AbstractExtensionTest extends \PHPUnit_Framework_TestCase
 
         $this->container = new ContainerBuilder();
         $this->container->registerExtension($this->extension);
-
     }
 
     abstract protected function loadConfiguration(ContainerBuilder $container, $resource);
@@ -60,9 +56,9 @@ abstract class AbstractExtensionTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Return value of a private property using ReflectionClass
+     * Return value of a private property using ReflectionClass.
      *
-     * @param mixed $instance
+     * @param mixed  $instance
      * @param string $property
      *
      * @return mixed

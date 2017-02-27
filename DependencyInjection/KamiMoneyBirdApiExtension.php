@@ -9,14 +9,12 @@
  * file that was distributed with this source code.
  */
 
-
 namespace Kami\MoneyBirdApiBundle\DependencyInjection;
 
-use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\Config\FileLocator;
-use Symfony\Component\HttpKernel\DependencyInjection\Extension;
+use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Loader\XmlFileLoader;
-
+use Symfony\Component\HttpKernel\DependencyInjection\Extension;
 
 class KamiMoneyBirdApiExtension extends Extension
 {

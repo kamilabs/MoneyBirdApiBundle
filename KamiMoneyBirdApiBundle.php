@@ -9,12 +9,10 @@
  * file that was distributed with this source code.
  */
 
-
 namespace Kami\MoneyBirdApiBundle;
 
-use Symfony\Component\HttpKernel\Bundle\Bundle;
 use Kami\MoneyBirdApiBundle\DependencyInjection\KamiMoneyBirdApiExtension;
-
+use Symfony\Component\HttpKernel\Bundle\Bundle;
 
 class KamiMoneyBirdApiBundle extends Bundle
 {
@@ -23,6 +21,7 @@ class KamiMoneyBirdApiBundle extends Bundle
         if (null === $this->extension) {
             $this->extension = new KamiMoneyBirdApiExtension();
         }
+
         return $this->extension;
     }
 }
